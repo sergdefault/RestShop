@@ -9,10 +9,7 @@ import com.tsymbaliuk.services.CategoriesService;
 import com.tsymbaliuk.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -22,7 +19,9 @@ import java.util.Collection;
  */
 
 @RestController
-public class IndexController {
+@CrossOrigin()
+@RequestMapping(value = "/products")
+public class ProductsController {
 
     @Autowired
     private ProductService productService;
@@ -31,8 +30,8 @@ public class IndexController {
     private CategoriesService categoriesService;
 
 
-    @RequestMapping(value = "/products")
-    public @ResponseBody Collection<Product> products() {
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody  Collection<Product> products() {
         return productService.getProducts();
     }
 
