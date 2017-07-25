@@ -13,8 +13,8 @@ public class Product implements Serializable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id")
-    private int id;
+    @Column(name="product_id")
+    private long product_id;
 
     @Column(name="name")
     private String name;
@@ -25,8 +25,8 @@ public class Product implements Serializable{
     @Column(name="price")
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "id",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
 
 
@@ -34,12 +34,14 @@ public class Product implements Serializable{
 
     }
 
-    public int getId() {
-        return id;
+
+
+    public long getProduct_id() {
+        return product_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {

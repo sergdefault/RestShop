@@ -13,8 +13,8 @@ public class Category implements Serializable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id")
-    private int id;
+    @Column(name="category_id")
+    private int category_id;
 
     @Column(name="name")
     private String name;
@@ -22,19 +22,19 @@ public class Category implements Serializable{
     @Column(name="description")
     private String description;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
 
 
     public Category(){}
 
 
-    public int getId() {
-        return id;
+    public int getCategory_id() {
+        return category_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 
     public String getName() {

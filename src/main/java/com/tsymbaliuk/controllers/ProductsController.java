@@ -26,18 +26,16 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private CategoriesService categoriesService;
-
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody  Collection<Product> products() {
         return productService.getProducts();
     }
 
-    @RequestMapping(value = "/cat")
-    public Collection<Category> categories() {
-        return categoriesService.getAll();
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Product getById(@PathVariable ("id")long id){
+        return productService.getById(id);
     }
 
 }

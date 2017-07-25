@@ -18,4 +18,8 @@ public class ProductService {
     public Collection<Product> getProducts(){
         return this.productsDao.findAll();
     }
+
+    public Product getById(long id){
+        return productsDao.findOne(id);
+    }
 }
