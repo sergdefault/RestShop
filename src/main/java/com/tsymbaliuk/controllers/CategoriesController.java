@@ -3,6 +3,7 @@ package com.tsymbaliuk.controllers;
 import com.tsymbaliuk.entity.Category;
 import com.tsymbaliuk.services.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;

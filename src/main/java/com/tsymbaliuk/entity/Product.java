@@ -19,6 +19,9 @@ public class Product implements Serializable{
     @Column(name="name")
     private String name;
 
+    @Column(name="short_description")
+    private String shortDescription;
+
     @Column(name="description")
     private String description;
 
@@ -34,7 +37,13 @@ public class Product implements Serializable{
 
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
 
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
 
     public long getProduct_id() {
         return product_id;
