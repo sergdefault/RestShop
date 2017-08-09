@@ -1,5 +1,7 @@
 package com.tsymbaliuk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -14,7 +16,7 @@ public class Category implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="category_id")
-    private int category_id;
+    private long category_id;
 
     @Column(name="name")
     private String name;
@@ -22,18 +24,19 @@ public class Category implements Serializable{
     @Column(name="description")
     private String description;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private Set<Product> products;
+    @Basic(fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "category")
+    protected Set<Product> products;
 
 
     public Category(){}
 
 
-    public int getCategory_id() {
+    public long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(long category_id) {
         this.category_id = category_id;
     }
 
