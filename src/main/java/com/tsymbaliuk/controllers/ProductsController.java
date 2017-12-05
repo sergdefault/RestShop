@@ -6,9 +6,12 @@ package com.tsymbaliuk.controllers;
 import com.tsymbaliuk.entity.Product;
 import com.tsymbaliuk.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 
 /**
@@ -34,4 +37,10 @@ public class ProductsController {
         return productService.getById(id);
     }
 
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<List<Product>> getById(@RequestBody List<Product> products){
+        products.forEach(p -> System.out.println(p.getName()));
+        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+    }
 }
