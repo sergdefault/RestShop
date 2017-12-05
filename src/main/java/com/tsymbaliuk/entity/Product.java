@@ -76,4 +76,16 @@ public class Product implements Serializable{
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "product_id=" + product_id +
+                ", name='" + name + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                '}';
+    }
 }

@@ -40,7 +40,7 @@ public class ProductsController {
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<List<Product>> getById(@RequestBody List<Product> products){
-        products.forEach(p -> System.out.println(p.getName()));
-        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+        products.forEach(System.out::println);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
