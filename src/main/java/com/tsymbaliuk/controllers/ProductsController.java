@@ -3,12 +3,9 @@ package com.tsymbaliuk.controllers;
 /**
  * Created by SerhiiTsymbaliuk on 7/13/17.
  */
-import com.tsymbaliuk.entity.Category;
 import com.tsymbaliuk.entity.Product;
-import com.tsymbaliuk.services.CategoriesService;
 import com.tsymbaliuk.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
