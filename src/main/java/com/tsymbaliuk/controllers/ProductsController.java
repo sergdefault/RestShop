@@ -23,7 +23,6 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
 
-
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody  Collection<Product> products() {
         return productService.getProducts();
