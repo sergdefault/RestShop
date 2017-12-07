@@ -1,7 +1,7 @@
 package com.tsymbaliuk.security;
 
-import com.tsymbaliuk.model.security.Authority;
-import com.tsymbaliuk.model.security.User;
+import com.tsymbaliuk.security.model.security.Authority;
+import com.tsymbaliuk.security.model.security.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

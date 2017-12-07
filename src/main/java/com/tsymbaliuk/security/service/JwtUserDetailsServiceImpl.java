@@ -1,7 +1,7 @@
 package com.tsymbaliuk.security.service;
 
 
-import com.tsymbaliuk.model.security.User;
+import com.tsymbaliuk.security.model.security.User;
 import com.tsymbaliuk.security.JwtUserFactory;
 import com.tsymbaliuk.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.tsymbaliuk.model.security;
+package com.tsymbaliuk.security.model.security;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

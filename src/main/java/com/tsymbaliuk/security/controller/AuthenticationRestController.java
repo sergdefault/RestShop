@@ -4,6 +4,7 @@ package com.tsymbaliuk.security.controller;
 import com.tsymbaliuk.security.JwtAuthenticationRequest;
 import com.tsymbaliuk.security.JwtTokenUtil;
 import com.tsymbaliuk.security.JwtUser;
+import com.tsymbaliuk.security.model.security.User;
 import com.tsymbaliuk.security.service.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +39,6 @@ public class AuthenticationRestController {
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
-
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
