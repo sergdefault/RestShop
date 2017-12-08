@@ -31,8 +31,7 @@ public class User {
     @Size(min = 4, max = 50)
     private String firstname;
 
-    @Column(name = "LASTNAME", length = 50)
-    @NotNull
+    @Column(name = "LASTNAME", length = 50, unique = true)
     @Size(min = 4, max = 50)
     private String lastname;
 
@@ -40,6 +39,14 @@ public class User {
     @NotNull
     @Size(min = 4, max = 50)
     private String email;
+
+    @Column(name = "PHONE", length = 50)
+    @Size(min = 10, max = 50)
+    private String phone;
+
+    @Column(name = "ADDRESS", length = 50)
+    @Size(min = 10, max = 70)
+    private String address;
 
     @Column(name = "ENABLED")
     @NotNull
@@ -56,6 +63,22 @@ public class User {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Long getId() {
         return id;
