@@ -1,5 +1,7 @@
 package com.tsymbaliuk.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -7,38 +9,51 @@ import javax.validation.constraints.NotNull;
  * Created by SerhiiTsymbaliuk on 12/8/17.
  */
 @Entity()
-@Table(name="items")
+@Table(name = "items")
 public class OrderItem {
     @Id
-    @Column(name = "ITEM_ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
     @SequenceGenerator(name = "item_seq", sequenceName = "item_seq", allocationSize = 1)
     private Long itemId;
 
-    @Column(name = "P_ID")
     @NotNull
     private long product_id;
 
-    @Column(name = "O_ID")
     @NotNull
-    private int orderId;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    @JsonIgnore
+    private Order order;
 
-
-    @Column(name = "P_PRICE")
     @NotNull
     private double price;
+
+    @NotNull
+    private int quantity;
 
     public OrderItem() {
     }
 
-
-    public int getOrderId() {
-        return orderId;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public int getQuantity() {
+        return quantity;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
 
     public long getItemId() {
         return itemId;

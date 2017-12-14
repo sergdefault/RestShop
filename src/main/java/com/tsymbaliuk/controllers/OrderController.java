@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController(value = "/orders")
 @CrossOrigin
-@PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+//@PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
 public class OrderController {
 
     @Autowired
@@ -29,9 +29,9 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public  List<Order> getOrdersByUserId(Principal principal){
-        String name = principal.getName();
-        JwtUser jwtUser = JwtUserFactory.create(userRepository.findByUsername(name));
-        List<Order> ordersByUserId = orderService.getOrdersByUserId(jwtUser.getId());
+//        String name = principal.getName();
+//        JwtUser jwtUser = JwtUserFactory.create(userRepository.findByUsername(name));
+        List<Order> ordersByUserId = orderService.getOrdersByUserId(1);
         return ordersByUserId;
     }
 }

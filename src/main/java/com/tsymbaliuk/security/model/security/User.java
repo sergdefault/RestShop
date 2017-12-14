@@ -22,7 +22,7 @@ public class User {
     private String username;
 
     @Column(name = "PASSWORD", length = 100)
-    @NotNull
+    //@NotNull
     @Size(min = 4, max = 100)
     private String password;
 
@@ -41,21 +41,12 @@ public class User {
     private String email;
 
     @Column(name = "PHONE", length = 50)
-    @Size(min = 10, max = 50)
+    @Size(min = 3, max = 50)
     private String phone;
 
     @Column(name = "ADDRESS", length = 50)
     @Size(min = 10, max = 70)
     private String address;
-
-    @Column(name = "ENABLED")
-    @NotNull
-    private Boolean enabled;
-
-    @Column(name = "LASTPASSWORDRESETDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
-    private Date lastPasswordResetDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -63,6 +54,9 @@ public class User {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
+
+    public User() {
+    }
 
     public String getAddress() {
         return address;
@@ -128,13 +122,6 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
 
     public List<Authority> getAuthorities() {
         return authorities;
@@ -144,11 +131,18 @@ public class User {
         this.authorities = authorities;
     }
 
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
-    }
-
-    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
-        this.lastPasswordResetDate = lastPasswordResetDate;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", authorities=" + authorities +
+                '}';
     }
 }

@@ -4,7 +4,6 @@ package com.tsymbaliuk.security.controller;
 import com.tsymbaliuk.security.JwtAuthenticationRequest;
 import com.tsymbaliuk.security.JwtTokenUtil;
 import com.tsymbaliuk.security.JwtUser;
-import com.tsymbaliuk.security.model.security.User;
 import com.tsymbaliuk.security.service.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,12 +61,13 @@ public class AuthenticationRestController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
-            String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
-        } else {
-            return ResponseEntity.badRequest().body(null);
-        }
+//        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
+//            String refreshedToken = jwtTokenUtil.refreshToken(token);
+//            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+//        } else {
+//            return ResponseEntity.badRequest().body(null);
+//        }
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwtTokenUtil.refreshToken(token)));
     }
 
 }
