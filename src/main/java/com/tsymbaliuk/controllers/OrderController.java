@@ -6,18 +6,18 @@ import com.tsymbaliuk.security.JwtUserFactory;
 import com.tsymbaliuk.security.repository.UserRepository;
 import com.tsymbaliuk.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.util.List;
 
 /**
  * Created by SerhiiTsymbaliuk on 12/8/17.
  */
-@RestController(value = "/orders")
+@RestController
 @CrossOrigin
-//@PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
 public class OrderController {
 
     @Autowired
@@ -26,12 +26,22 @@ public class OrderController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    @RequestMapping(value = "/orders",method = RequestMethod.GET)
     @ResponseBody
     public  List<Order> getOrdersByUserId(Principal principal){
-//        String name = principal.getName();
-//        JwtUser jwtUser = JwtUserFactory.create(userRepository.findByUsername(name));
+        String name = principal.getName();
+        JwtUser jwtUser = JwtUserFactory.create(userRepository.findByUsername(name));
         List<Order> ordersByUserId = orderService.getOrdersByUserId(1);
         return ordersByUserId;
+    }
+
+    @RequestMapping(value = "/orders/save", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Order> saveOrder(@RequestBody Order order){
+        order.setUserId(1);
+        System.out.println(order);
+        orderService.saveOrder(order);
+        return new ResponseEntity<>(order, HttpStatus.OK);
     }
 }

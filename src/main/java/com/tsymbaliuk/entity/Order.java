@@ -14,7 +14,6 @@ public class Order implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
     @SequenceGenerator(name = "order_seq", sequenceName = "order_seq", allocationSize = 1)
-    @NotNull
     private Long id;
     @NotNull
     private long userId;
@@ -51,6 +50,12 @@ public class Order implements Serializable{
         this.userId = userId;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", items=" + items +
+                '}';
+    }
 }

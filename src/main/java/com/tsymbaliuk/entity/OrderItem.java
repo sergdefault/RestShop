@@ -19,7 +19,6 @@ public class OrderItem {
     @NotNull
     private long product_id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnore
@@ -78,5 +77,16 @@ public class OrderItem {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "itemId=" + itemId +
+                ", product_id=" + product_id +
+                ", order=" + order +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }

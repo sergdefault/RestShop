@@ -23,4 +23,8 @@ public class OrderService {
     public Order getOrdersById(long id){
         return orderDao.findOne(id);
     }
+
+    public void saveOrder(Order order){
+        orderDao.save(order);
+    }
 }
