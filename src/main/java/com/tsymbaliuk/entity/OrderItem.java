@@ -1,5 +1,6 @@
 package com.tsymbaliuk.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,7 +22,8 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "id")
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonBackReference
     private Order order;
 
     @NotNull

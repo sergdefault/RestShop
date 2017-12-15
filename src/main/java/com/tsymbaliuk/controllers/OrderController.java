@@ -39,8 +39,8 @@ public class OrderController {
     @RequestMapping(value = "/orders/save", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Order> saveOrder(@RequestBody Order order){
-        order.setUserId(1);
-        System.out.println(order);
+//        order.setUserId(1);
+//        System.out.println(order);
         orderService.saveOrder(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }

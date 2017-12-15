@@ -1,5 +1,7 @@
 package com.tsymbaliuk.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -20,6 +22,7 @@ public class Order implements Serializable{
 
     @NotNull
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<OrderItem> items;
 
     public Order() {
@@ -50,12 +53,4 @@ public class Order implements Serializable{
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", items=" + items +
-                '}';
-    }
 }
