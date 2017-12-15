@@ -32,15 +32,13 @@ public class OrderController {
     public  List<Order> getOrdersByUserId(Principal principal){
         String name = principal.getName();
         JwtUser jwtUser = JwtUserFactory.create(userRepository.findByUsername(name));
-        List<Order> ordersByUserId = orderService.getOrdersByUserId(1);
+        List<Order> ordersByUserId = orderService.getOrdersByUserId(jwtUser.getId());
         return ordersByUserId;
     }
 
     @RequestMapping(value = "/orders/save", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Order> saveOrder(@RequestBody Order order){
-//        order.setUserId(1);
-//        System.out.println(order);
         orderService.saveOrder(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }

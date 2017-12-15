@@ -1,10 +1,13 @@
 package com.tsymbaliuk.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -25,7 +28,30 @@ public class Order implements Serializable{
     @JsonManagedReference
     private Set<OrderItem> items;
 
+    @Column
+    @CreationTimestamp
+    private Date date;
+
+    @NotNull
+    private double totalPrice;
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public Order() {
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Set<OrderItem> getItems() {

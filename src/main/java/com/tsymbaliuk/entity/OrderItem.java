@@ -20,6 +20,9 @@ public class OrderItem {
     @NotNull
     private long product_id;
 
+    @NotNull
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "id")
 //    @JsonIgnore
@@ -37,6 +40,14 @@ public class OrderItem {
 
     public void setItemId(Long itemId) {
         this.itemId = itemId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {
