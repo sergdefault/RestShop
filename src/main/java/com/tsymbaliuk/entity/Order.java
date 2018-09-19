@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -28,18 +28,28 @@ public class Order implements Serializable{
     @JsonManagedReference
     private Set<OrderItem> items;
 
+    private String description;
+
     @Column
     @CreationTimestamp
     private Date date;
 
-    @NotNull
-    private double totalPrice;
+    public String getDescription() {
+        return description;
+    }
 
-    public double getTotalPrice() {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @NotNull
+    private BigDecimal totalPrice;
+
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

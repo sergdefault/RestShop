@@ -36,6 +36,5 @@ public class UserCabinetController {
         System.out.println(user);
         user.setPassword("user");
         userRepository.save(user);
-
     }
 }
